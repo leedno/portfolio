@@ -60,10 +60,12 @@
             background-color: var(--card-light);
             border: 1px solid var(--border-light);
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            color: var(--text-light); /* ADDED: Explicitly set light mode text color */
         }
         html.dark .card {
             background-color: var(--card-dark);
             border-color: var(--border-dark);
+            color: var(--text-dark); /* ADDED: Explicitly set dark mode text color */
         }
 
         /* --- Scroll Animations --- */
@@ -107,10 +109,12 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(229, 231, 235, 0.7);
+            color: var(--text-light); /* ADDED: Explicitly set light mode text color */
         }
         html.dark #chat-sidebar {
             background-color: rgba(31, 41, 55, 0.8);
             border: 1px solid rgba(55, 65, 81, 0.7);
+            color: var(--text-dark); /* ADDED: Explicitly set dark mode text color */
         }
         #chat-sidebar.active {
             transform: translateX(0);
@@ -383,7 +387,7 @@
             
             <div class="flex space-x-2">
                 <input type="text" id="user-input" placeholder="Ask a question..."
-                    class="flex-grow p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                    class="flex-grow p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                     onkeydown="if(event.key === 'Enter') sendMessage()">
                 <button id="send-button" onclick="sendMessage()"
                         class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition duration-150 flex-shrink-0">
