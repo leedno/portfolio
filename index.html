@@ -1,256 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" class="light"> <!-- Start in light mode -->
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leon Nordell - Web Developer, Stockholm</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <title>Leon Nordell - Web Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Leon Nordell's portfolio and technical resume." />
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="p-8 lg:p-12">
+<body>
+    
+    <main class="container">
 
-    <!-- Dark Mode Toggle -->
-    <button id="theme-toggle" class="fixed top-6 right-6 z-50 p-2 rounded-full card hover:bg-gray-100 dark:hover:bg-gray-700">
-        <!-- Sun Icon -->
-        <svg id="theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-        <!-- Moon Icon -->
-        <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-    </button>
-
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto space-y-10">
-
-        <!-- HEADER SECTION -->
-        <header class="pb-6 mb-4">
-            <div class="flex flex-col-reverse md:flex-row items-start justify-between">
-                <div>
-                    <h1 class="text-5xl font-extrabold text-gray-800 dark:text-white">Leon Nordell</h1>
-                    <div class="h-10 mt-2"> <!-- Container to prevent layout shift -->
-                        <p class="text-2xl text-blue-600 dark:text-blue-400 font-semibold" id="typing-text"></p>
-                    </div>
+        <header class="header">
+            <div class="header-flex">
+                
+                <div class="header-titles">
+                    <h1 class="name-heading">Leon Nordell</h1>
+                    <h2 class="title-heading">
+                        <span id="typewriter" class="typewriter-text"></span>
+                    </h2>
                 </div>
-                <span class="inline-flex items-center bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-medium px-4 py-1 rounded-full mb-4 md:mb-0">
-                    <span class="w-2 h-2 mr-2 bg-green-500 rounded-full"></span>
-                    Open to Work in Stockholm
-                </span>
-            </div>
-            <div class="text-gray-600 dark:text-gray-400 text-sm mt-4 flex flex-wrap gap-x-5 gap-y-2">
-                <a href="#" class="flex items-center gap-1.5 hover:text-blue-500 transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2.586a1 1 0 01.293-.707l6-6a1 1 0 000-1.414l-3-3z"></path><path d="M16.293 8.293a1 1 0 00-1.414 0l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L15.414 13l1.293-1.293a1 1 0 000-1.414z"></path></svg>
-                    Stockholm, Sweden
-                </a>
-                <a href="mailto:leon.nordell8@gmail.com" class="flex items-center gap-1.5 hover:text-blue-500 transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                    leon.nordell8@gmail.com
-                </a>
-                <a href="https://github.com/LeonNordell" target="_blank" class="flex items-center gap-1.5 hover:text-blue-500 transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.165 6.839 9.492.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.815a9.564 9.564 0 012.705.36c1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.003 10.003 0 0020 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
-                    github.com/LeonNordell
-                </a>
-            </div>
+
+                <div class="contact-details">
+                    <p>Stockholm, Sweden</p>
+                    <p>leon.nordell8@gmail.com</p>
+                    <p>+358 44 545 4444</p>
+                </div>
+            </div> 
+            
+            <nav class="main-nav">
+                <div class="nav-page-links">
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#/resume.pdf" target="_blank" rel="noopener noreferrer">View Resume</a>
+                </div>
+                
+                <div class="nav-social-links">
+                    <a href="https://github.com/leedno" target="_blank" rel="noopener noreferrer" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="nav-icon"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.109-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/leon-nordell/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="nav-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                    </a>
+                </div>
+            </nav>
         </header>
 
-        <!-- PROFILE SUMMARY SECTION -->
-        <section class="reveal">
-            <h2 class="text-3xl font-semibold mb-5 text-gray-800 dark:text-white">Profile Summary</h2>
-            <div class="card p-6 rounded-xl shadow-lg">
-                <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                    Stockholm-based developer currently pursuing a B.Eng. in ICT at Metropolia AMK. My core passion is **modern web development**, where I bridge my formal data engineering background [source: 30, 31] with a practical, hands-on approach to building clean and responsive applications.
-                    <br><br>
-                    I have direct experience as a **solo web developer** [source: 14], managing a project from concept to deployment, and technical production experience [source: 53, 55] that sharpened my problem-solving and attention to detail.
-                    <br><br>
-                    My key advantage is **fluency in 5 languages** (native Swedish & Finnish, fluent English, plus Finnish & Swedish Sign Languages) [source: 37, 38, 39, 40], enabling clear communication in complex, multicultural teams. I'm actively seeking a developer role where I can contribute, learn, and grow.
-                </p>
-            </div>
+        <section id="about" class="content-section">
+            <h2 class="section-heading">About Me</h2>
+            <p class="section-text">
+              I'm a Full-Stack Developer based in Stockholm, actively looking
+              to jump into a full-time Junior role. I'm a third-year B.Eng. in
+              ICT student (studying remotely), which means I'm fully available
+              to start work immediately. My strength is building reliable web
+              applications with a practical, data-driven foundation. This
+              technical background is supported by my ability to communicate
+              easily, as I'm fluent in five languages.
+            </p>
         </section>
 
-        <!-- MY APPROACH SECTION -->
-        <section class="reveal">
-            <h2 class="text-3xl font-semibold mb-5 text-gray-800 dark:text-white">My Approach</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="card p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
-                    <h3 class="text-xl font-bold mb-2">1. Pragmatic & Clean</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        I focus on writing clean, maintainable code that solves the right problem. I believe in using frameworks for efficiency but understand the fundamentals (vanilla JS, pure CSS) first.
-                    </p>
-                </div>
-                <!-- Card 2 -->
-                <div class="card p-6 rounded-xl shadow-lg border-l-4 border-green-500">
-                    <h3 class="text-xl font-bold mb-2">2. Data-Driven</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        My data engineering studies [source: 30, 31] taught me that data is key. I build applications with a strong understanding of database design (SQL/NoSQL) [source: 30] and backend logic (Python) [source: 28].
-                    </p>
-                </div>
-                <!-- Card 3 -->
-                <div class="card p-6 rounded-xl shadow-lg border-l-4 border-purple-500">
-                    <h3 class="text-xl font-bold mb-2">3. Communication is Core</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Code is communication. So is human language. My 5-language fluency [source: 37, 38, 39, 40] and technical background allows me to bridge the gap between users, managers, and other developers.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- TECHNICAL SKILLS SECTION -->
-        <section class="reveal">
-            <h2 class="text-3xl font-semibold mb-5 text-gray-800 dark:text-white">Technical Toolkit</h2>
-            <div id="skills-container" class="card p-6 rounded-xl shadow-lg flex flex-wrap gap-3">
-                <!-- Skills added via JS -->
-            </div>
-        </section>
-
-        <!-- PROJECTS SECTION -->
-        <section class="reveal">
-            <h2 class="text-3xl font-semibold mb-5 text-gray-800 dark:text-white">Featured Projects</h2>
-            <div class="space-y-8">
-                <!-- Project 1 -->
-                <div class="card p-6 rounded-xl shadow-lg grid md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2">
-                        <h3 class="text-xl font-bold text-blue-600 dark:text-blue-400">AI Portfolio Advisor (This Site)</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mt-2 mb-4">
-                            This portfolio is an interactive application. It features a conversational AI assistant (click the chat bubble!) powered by the **Gemini API**. The AI is "briefed" on my CV and can answer questions about my qualifications.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-stack">JavaScript (ES6+)</span>
-                            <span class="tech-stack">Gemini API</span>
-                            <span class="tech-stack">Tailwind CSS</span>
-                            <span class="tech-stack">HTML5</span>
+        <section id="projects" class="content-section">
+            <h2 class="section-heading">Top Projects</h2>
+            <div class="project-grid">
+                
+                <div class="project-card">
+                    <img src="./assets/phi3-chat_screenshot.png" alt="Phi-3 Chat CLI Screenshot" class="project-image">
+                    <div class="project-details">
+                        <h3 class="project-title">Phi-3 Chat CLI</h3>
+                        <p class="project-description">A lightweight Python REPL for interacting with a local GGUF-format LLM (Phi-3). This project demonstrates competence in system integration, command-line application design, and ethical AI utilization by running the model entirely on local hardware (CPU/GPU).</p>
+                        <div class="project-tags">
+                            <span class="tag-item">Python</span>
+                            <span class="tag-item">LLM Integration</span>
+                            <span class="tag-item">CLI Design</span>
+                            <span class="tag-item">System Resource Mgmt</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/leedno/phi3-chat" class="link-secondary">View Code</a>
                         </div>
                     </div>
-                    <div class="flex md:flex-col md:items-end justify-start md:justify-end gap-3">
-                        <a href="httpsa://github.com/LeonNordell/portfolio-ai" target="_blank" class="project-button">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.165 6.839 9.492.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.815a9.564 9.564 0 012.705.36c1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.003 10.003 0 0020 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
-                            View Code
-                        </a>
-                    </div>
                 </div>
-                <!-- Project 2 -->
-                <div class="card p-6 rounded-xl shadow-lg grid md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2">
-                        <h3 class="text-xl font-bold text-green-600 dark:text-green-400">Full-Stack Data Dashboard (Conceptual)</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mt-2 mb-4">
-                            (In-Progress) A full-stack application to track and visualize IoT sensor data. A **Python (Flask)** backend ingests data into a **PostgreSQL** [source: 30] database, while a **React** frontend provides real-time charts and analysis.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-stack">React</span>
-                            <span class="tech-stack">Python (Flask)</span>
-                            <span class="tech-stack">PostgreSQL</span>
-                            <span class="tech-stack">Pandas</span>
+
+                <div class="project-card">
+                    <img src="assets/todo_screenshot.png" alt="To-Do List App Screenshot" class="project-image">
+                    <div class="project-details">
+                        <h3 class="project-title">Vanilla JS To-Do List App</h3>
+                        <p class="project-description">A simple, single-page To-Do List application built exclusively with **pure JavaScript, HTML, and CSS**. This project demonstrates fundamental front-end skills, focusing on dynamic list manipulation (creating, reading, deleting items) and using `localStorage` to ensure data persists across browser sessions.</p>
+                        <div class="project-tags">
+                            <span class="tag-item">Vanilla JavaScript</span>
+                            <span class="tag-item">HTML/CSS</span>
+                            <span class="tag-item">DOM Manipulation</span>
+                            <span class="tag-item">LocalStorage</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://youtu.be/eyUe5JhMkRk" class="link-primary">Live Demo (Video)</a>
+                            <a href="https://github.com/leedno/todo_list_app" class="link-secondary">View Code</a>
                         </div>
                     </div>
-                    <div class="flex md:flex-col md:items-end justify-start md:justify-end gap-3">
-                        <a href="#" class="project-button">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
-                            View Live (Soon)
-                        </a>
-                        <a href="#" class="project-button">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.165 6.839 9.492.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.815a9.564 9.564 0 012.705.36c1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.003 10.003 0 0020 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
-                            View Code
-                        </a>
-                    </div>
                 </div>
-                <!-- Project 3 -->
-                <div class="card p-6 rounded-xl shadow-lg grid md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2">
-                        <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400">Association Website (C.O. Malm -Keskus)</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mt-2 mb-4">
-                            Served as the **solo web developer** [source: 14] for a community association. Designed, built, and maintained a responsive website from the ground up. Collaborated directly with members to gather requirements and deploy new features.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-stack">HTML5</span>
-                            <span class="tech-stack">CSS3 (Responsive)</span>
-                            <span class="tech-stack">JavaScript</span>
-                            <span class="tech-stack">Client Communication</span>
-                        </div>
-                    </div>
-                    <div class="flex md:flex-col md:items-end justify-start md:justify-end gap-3">
-                        <a href="#" class="project-button">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
-                            View Live
-                        </a>
-                    </div>
-                </div>
+
             </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer class="mt-8 pt-8 border-t text-sm text-center text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700">
-            <p>Designed and built by Leon Nordell. © 2025</p>
-            <p class="mt-1">Fluent in 5 languages (SE, FI, EN, SE-SL, FI-SL) [source: 37, 38, 39, 40].</p>
-        </footer>
+        <section id="skills" class="content-section">
+            <h2 class="section-heading">Technical Toolkit</h2>
+            <p class="section-text-secondary">Click on any skill to learn more about my experience with it.</p>
+            <div class="skill-tag-group">
+                <span class="skill-item" data-skill="JavaScript">JavaScript</span>
+                <span class="skill-item" data-skill="Python">Python</span>
+                <span class="skill-item" data-skill="HTML_CSS">HTML & CSS</span>
+                <span class="skill-item" data-skill="Databases">Databases</span>
+                <span class="skill-item" data-skill="Git">Git</span>
+                <span class="skill-item" data-skill="5_Languages">Fluent in 5 Languages</span>
+                <span class="skill-item" data-skill="Pandas_NumPy">Pandas & NumPy</span>
+                <span class="skill-item" data-skill="Linux">Linux</span>
+                <span class="skill-item" data-skill="Vim">Vim</span>
+                <span class="skill-item" data-skill="AI & LLM Integration">AI & LLM Integration</span>
+            </div>
+        </section>
+
     </main>
-
-    <!-- FLOATING CHAT SIDEBAR -->
-    <div id="chat-sidebar" class="card rounded-2xl flex flex-col p-4">
-        <div class="flex justify-between items-center border-b pb-2 mb-3 border-gray-300 dark:border-gray-600">
-            <h3 class="text-lg font-bold text-gray-800 dark:text-white">AI Advisor</h3>
-            <button id="close-chat-btn" class="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-copyright">&copy; 2025 Leon Nordell. Stockholm, Sweden.</p>
+            <div class="footer-social-links">
+                </div>
         </div>
-        
-        <div id="chat-log" class="chat-log flex-grow p-2 space-y-3">
-            <!-- Initial AI Greeting -->
-            <div class="message ai mt-auto">
-                <p class="font-semibold">Hello!</p>
-                <p class="mt-1">I am Leon's AI assistant, briefed on his CV and background. I can answer specific questions about his skills, experience, and why he'd be a great fit for your team.</p>
-                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Try asking one of the prompts below or type your own!</p>
-            </div>
-        </div>
+    </footer>
 
-        <!-- Suggested Questions -->
-        <div class="border-t border-gray-200 dark:border-gray-700 pt-3">
-            <div id="suggested-questions" class="flex flex-wrap gap-2 mb-3">
-                <button class="suggestion-btn">What are his 5 languages?</button>
-                <button class="suggestion-btn">Tell me about his web dev experience.</button>
-                <button class="suggestion-btn">Why Stockholm?</button>
+
+    <div id="skill-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title" class="modal-title">Skill Title</h3>
+                <button id="modal-close" class="modal-close-btn">&times;</button>
             </div>
-            
-            <div class="flex space-x-2">
-                <input type="text" id="user-input" placeholder="Ask a question..."
-                    class="flex-grow p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
-                    onkeydown="if(event.key === 'Enter') sendMessage()">
-                <button id="send-button" onclick="sendMessage()"
-                        class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition duration-150 flex-shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                </button>
-            </div>
+            <p id="modal-description" class="modal-description">Skill description...</p>
         </div>
     </div>
 
-    <!-- Floating Button to Open Sidebar -->
-    <button id="toggle-chat-btn" class="open-button bg-blue-600 text-white rounded-full w-16 h-16 shadow-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105 flex items-center justify-center">
-        <svg id="chat-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z" />
-        </svg>
-    </button>
-    
-    <!-- SKILL MODAL -->
-    <div id="skill-modal" class="modal hidden fixed inset-0 z-[150] flex items-center justify-center p-4"
-         aria-labelledby="skill-modal-title" role="dialog" aria-modal="true">
-        <!-- Overlay -->
-        <div id="skill-modal-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-        <!-- Modal Panel -->
-        <div id="skill-modal-panel"
-             class="modal-panel card w-full max-w-lg rounded-2xl shadow-xl z-10 mx-auto">
-            <!-- Header -->
-            <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-                <h3 id="skill-modal-title" class="text-xl font-bold text-gray-800 dark:text-white">
-                    Skill Title
-                </h3>
-                <button id="skill-modal-close-btn"
-                        class="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-white transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+    <div id="chat-fab" title="Talk to Leon's AI Assistant">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 chat-icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+        </svg>
+    </div>
+
+    <div id="chat-window" class="chat-window">
+        <div class="chat-header">
+            <h3 class="chat-title">Leon's (Overly Confident) AI</h3>
+        </div>
+        
+        <div id="chat-messages" class="chat-messages">
+            <div class="message-bubble-bot">
+                <p>Alright, I'm here. Ask me anything about Leon. I've got all the (brilliant) answers. What do you want?</p>
             </div>
-            <!-- Body -->
-            <div class="p-6">
-                <p id="skill-modal-description" class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Skill description goes here...
-                </p>
-            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask a question..." class="chat-input">
+            <button id="chat-send" class="chat-send-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 send-icon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+              </svg>
+            </button>
         </div>
     </div>
 

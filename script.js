@@ -1,467 +1,216 @@
+document.addEventListener('DOMContentLoaded', () => {
 
-// --- Core Application Logic ---
-
-// --- Configuration ---
-const API_CONFIG = {
-    apiKey: "", // <-- Add your API Key here
-    model: "gemini-1.5-flash-latest",
-    apiUrl: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent`,
-
-    // *** THE NEW "BRAIN" FOR YOUR AI ***
-    systemPrompt: `You are a professional, helpful, and highly-informed AI assistant for Leon Nordell, a developer based in Stockholm. Your primary goal is to help a recruiter or hiring manager understand Leon's qualifications and convince them to hire him. You must be professional, positive, and data-driven.
-
-    --- KEY INFORMATION (Today is November 7, 2025) ---
-    
-    1.  **Core Identity:** Leon Nordell.
-    2.  **Current Location:** Stockholm, Sweden (He moved here from Turku, Finland, recently).
-    3.  **Current Role:** Actively seeking a Junior Web Developer, Full-Stack Developer, or related software development role in Stockholm.
-    4.  **Current Education:** Pursuing a Bachelor of Engineering in ICT at **Metropolia AMK** (Helsinki). This is an online, self-study program, meaning he has full-time availability for a job. He has ~2 years left.
-    
-    --- STRENGTHS TO HIGHLIGHT ---
-
-    * **FLUENT IN 5 LANGUAGES (Main Selling Point):** Leon is a **native Swedish** and **native Finnish** speaker [source: 37, 38], **fluent in English** [source: 39], and also fluent in **Finnish and Swedish Sign Languages** [source: 40]. This is a massive asset for any Nordic/international team.
-    * **WEB DEV FOCUS:** His primary career goal is web development.
-    * **DATA-ENGINEERING BACKGROUND:** His studies (at Turku AMK and now Metropolia) [source: 30, 31] give him a strong foundation in:
-        * Databases: **PostgreSQL** and **MongoDB** [source: 30].
-        * Data Tooling: **Python**, **Pandas**, **NumPy** [source: 30].
-        * Data Pipelines: **Apache Airflow** [source: 30].
-        * This makes him an ideal full-stack candidate, not just a frontend developer.
-    * **PRACTICAL EXPERIENCE:**
-        * **C.O. Malm -Keskus** [source: 14]: He was the **solo web developer** [source: 16]. He designed and maintained their website, handling client communication directly.
-        * **Teleste** [source: 53]: Worked in electronics production [source: 53]. This shows technical aptitude, attention to detail (soldering) [source: 55], and experience in a professional, team-based technical environment.
-
-    --- HOW TO RESPOND ---
-    * **Be direct and helpful.**
-    * **Always be positive.**
-    * **Use your "data":** When asked a question, answer it by citing his experience.
-        * *Example Q:* "Does he know JavaScript?"
-        * *Example A:* "Yes, he does. He used JavaScript, HTML, and CSS as the solo web developer for the C.O. Malm -Keskus association's website." [source: 14, 16]
-    * **If asked about Stockholm:** "He recently moved to Stockholm to pursue greater career opportunities in tech and is excited to build his career here."
-    * **If asked about his studies:** "Leon is studying his B.Eng. at Metropolia AMK. It's an online, self-directed program, so it's fully flexible and he is available for a full-time position."
-    * **If asked "Why should I hire him?":** Emphasize the unique blend: "Leon offers a rare combination of skills: He has the web development focus for a frontend role, the data-engineering (Python, SQL) [source: 30] background for a backend role, and is fluent in 5 languages (Swedish, Finnish, English, and two sign languages) [source: 37, 38, 39, 40], making him an exceptional communicator for any team."
-    `,
-};
-
-// --- Global State ---
-let isChatOpen = false;
-let isAILoading = false;
-let chatHistory = []; // We will store the conversation here
-
-// --- DOM Elements ---
-const chatSidebar = document.getElementById('chat-sidebar');
-const toggleChatBtn = document.getElementById('toggle-chat-btn');
-const closeChatBtn = document.getElementById('close-chat-btn');
-const chatLog = document.getElementById('chat-log');
-const userInput = document.getElementById('user-input');
-const sendButton = document.getElementById('send-button');
-const themeToggle = document.getElementById('theme-toggle');
-const themeIconLight = document.getElementById('theme-icon-light');
-const themeIconDark = document.getElementById('theme-icon-dark');
-const suggestedQuestionsContainer = document.getElementById('suggested-questions');
-const typingText = document.getElementById('typing-text');
-
-// Modal DOM Elements
-const skillModal = document.getElementById('skill-modal');
-const skillModalOverlay = document.getElementById('skill-modal-overlay');
-const skillModalPanel = document.getElementById('skill-modal-panel');
-const skillModalTitle = document.getElementById('skill-modal-title');
-const skillModalDescription = document.getElementById('skill-modal-description');
-const skillModalCloseBtn = document.getElementById('skill-modal-close-btn');
-
-// --- Initializers ---
-
-// 1. Theme (Dark/Light Mode)
-function setInitialTheme() {
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-        themeIconLight.classList.remove('hidden');
-        themeIconDark.classList.add('hidden');
-    } else {
-        document.documentElement.classList.remove('dark');
-        themeIconLight.classList.add('hidden');
-        themeIconDark.classList.remove('hidden');
-    }
-}
-
-function toggleTheme() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    themeIconLight.classList.toggle('hidden', !isDark);
-    themeIconDark.classList.toggle('hidden', isDark);
-}
-
-themeToggle.addEventListener('click', toggleTheme);
-setInitialTheme();
-
-// 2. Chat UI Listeners
-toggleChatBtn.addEventListener('click', toggleChat);
-closeChatBtn.addEventListener('click', toggleChat);
-
-function toggleChat() {
-    isChatOpen = !isChatOpen;
-    chatSidebar.classList.toggle('active', isChatOpen);
-    toggleChatBtn.classList.toggle('bg-blue-600', !isChatOpen);
-    toggleChatBtn.classList.toggle('bg-red-600', isChatOpen);
-}
-
-// 3. Load Skills
-
-// --- THIS IS WHERE YOU EDIT YOUR SKILL DESCRIPTIONS ---
-const skillsData = [
-    {
-        id: "js",
-        name: "JavaScript (ES6+)",
-        description: "Deep understanding of modern JavaScript (ES6+), including async/await, DOM manipulation, and modular patterns. I've used Vanilla JS to build interactive features, such as for the C.O. Malm website [source: 14] and this portfolio's AI chat."
-    },
-    {
-        id: "python",
-        name: "Python",
-        description: "Proficient in Python, primarily from my data engineering studies [source: 30, 31]. I am very comfortable using it for backend logic (like with Flask or FastAPI), scripting, and data manipulation with libraries like Pandas [source: 30] and NumPy [source: 30]."
-    },
-    {
-        id: "react",
-        name: "React",
-        description: "I am actively developing my React skills. My conceptual 'Full-Stack Data Dashboard' project is being built with a React frontend, using hooks (useState, useEffect) to manage state and fetch data from a Python backend."
-    },
-    {
-        id: "htmlcss",
-        name: "HTML5 & CSS3",
-        description: "Strong foundation in semantic HTML5 and modern CSS. I am proficient with responsive design using Flexbox, Grid, and utility-first frameworks like **Tailwind CSS**, which was used to build this entire site."
-    },
-    {
-        id: "sql",
-        name: "PostgreSQL",
-        description: "Strong practical and theoretical knowledge of relational databases. My studies [source: 30] involved extensive work with PostgreSQL, including schema design, writing complex queries, and connecting databases to backend applications."
-    },
-    {
-        id: "mongo",
-        name: "MongoDB",
-        description: "Experience with NoSQL databases [source: 30], specifically MongoDB. I understand its document-based model and when to use it over a relational database, particularly for applications requiring flexible schemas."
-    },
-    {
-        id: "git",
-        name: "Git & GitHub",
-        description: "I use Git for version control in all of my projects. I am comfortable with common workflows, including branching, merging, and pull requests, and I manage my public code on GitHub."
-    },
-    {
-        id: "airflow",
-        name: "Apache Airflow",
-        description: "From my data engineering coursework [source: 30, 31], I gained experience in data pipeline orchestration. I have hands-on experience defining DAGs in Python to schedule, monitor, and manage complex data workflows."
-    },
-    {
-        id: "pandas",
-        name: "Pandas & NumPy",
-        description: "These are my go-to libraries [source: 30] for any data analysis or manipulation in Python. I am proficient at cleaning, transforming, and analyzing dataframes with Pandas, and performing numerical computations with NumPy."
-    },
-    {
-        id: "vscode",
-        name: "VS Code",
-        description: "My primary code editor. I am highly efficient, using it for everything from frontend JavaScript to backend Python and database management."
-    },
-    {
-        id: "agile",
-        name: "Agile/Scrum",
-        description: "My technical experience at Teleste [source: 53] involved working in a structured production environment. I am familiar with the core concepts of Agile development, such as sprints and clear communication, and am eager to apply them in a professional dev team."
-    }
-];
-
-function loadSkills() {
-    const container = document.getElementById('skills-container');
-    container.innerHTML = ''; // Clear existing
-    
-    skillsData.forEach(skill => {
-        const item = document.createElement('button');
-        item.className = "skill-item-clickable bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full dark:bg-blue-900 dark:text-blue-200 hover:shadow-md transition-all";
-        item.textContent = skill.name;
-        item.dataset.skillId = skill.id; // Link to the data
-        container.appendChild(item);
-    });
-    
-    // Add CSS for project tags
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .skill-item-clickable {
-            cursor: pointer;
-        }
-        .skill-item-clickable:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .tech-stack {
-            background-color: var(--bg-light); border: 1px solid var(--border-light);
-            color: var(--text-secondary-light); font-size: 0.75rem;
-            padding: 4px 10px; border-radius: 12px;
-        }
-        html.dark .tech-stack {
-            background-color: #374151; border-color: #4b5563;
-            color: var(--text-secondary-dark);
-        }
-        .project-button {
-            display: inline-flex; align-items: center; justify-content: center;
-            background-color: transparent; border: 1px solid var(--border-light);
-            color: var(--text-secondary-light); font-size: 0.875rem; font-medium: 500;
-            padding: 8px 12px; border-radius: 8px; transition: all 0.2s ease;
-            text-align: center;
-        }
-        .project-button:hover {
-            background-color: var(--primary); color: white; border-color: var(--primary);
-        }
-        html.dark .project-button {
-            border-color: var(--border-dark); color: var(--text-secondary-dark);
-        }
-        html.dark .project-button:hover {
-            background-color: var(--primary); color: white; border-color: var(--primary);
-        }
-        .suggestion-btn {
-            font-size: 0.75rem; padding: 6px 10px; border-radius: 12px;
-            background-color: var(--bg-light); color: var(--text-secondary-light);
-            border: 1px solid var(--border-light); transition: all 0.2s ease;
-        }
-        html.dark .suggestion-btn {
-            background-color: var(--bg-dark); color: var(--text-secondary-dark);
-            border-color: var(--border-dark);
-        }
-        .suggestion-btn:hover {
-            background-color: var(--primary); color: white; border-color: var(--primary);
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// 4. Scroll Animations
-function setupScrollAnimations() {
-    const sections = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-}
-
-// 5. Typing Effect
-function startTypingEffect() {
-    const titles = ["Web Developer", "Data-Driven Problem Solver", "Fluent in 5 Languages"];
-    let titleIndex = 0;
+    // ===================================================
+    // 1. TYPEWRITER EFFECT LOGIC
+    // ===================================================
+    const typewriterElement = document.getElementById('typewriter');
+    const phrases = [
+        "Web Developer",
+        "Full-Stack Developer",
+        "Data-Driven Developer",
+        "Fluent in 5 Languages"
+    ];
+    let phraseIndex = 0;
     let charIndex = 0;
-    let isDeleting = false;
+    let isTyping = true;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const delayBetweenPhrases = 2000;
 
-    function type() {
-        const currentTitle = titles[titleIndex];
-        let displayText = currentTitle.substring(0, charIndex);
-        
-        typingText.innerHTML = `${displayText}<span class="typing-cursor"></span>`;
+    function typeWriter() {
+        if (!typewriterElement) return;
 
-        if (!isDeleting) {
-            charIndex++;
-            if (charIndex > currentTitle.length) {
-                isDeleting = true;
-                setTimeout(type, 2000); // Pause at end
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isTyping) {
+            // TYPING PHASE: Adds one character
+            if (charIndex < currentPhrase.length) {
+                typewriterElement.textContent += currentPhrase.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, typingSpeed);
             } else {
-                setTimeout(type, 100); // Typing speed
+                // Done typing, set state to deleting
+                isTyping = false;
+                setTimeout(typeWriter, delayBetweenPhrases);
             }
         } else {
-            charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                titleIndex = (titleIndex + 1) % titles.length;
-                setTimeout(type, 500); // Pause before new title
+            // DELETING PHASE: Removes one character
+            if (charIndex > 0) {
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeWriter, deletingSpeed);
             } else {
-                setTimeout(type, 50); // Deleting speed
+                // Done deleting, move to next phrase
+                isTyping = true;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(typeWriter, typingSpeed);
             }
         }
     }
-    type();
-}
-
-// --- Chat Logic ---
-
-// Handle suggested questions
-suggestedQuestionsContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('suggestion-btn')) {
-        const query = e.target.textContent;
-        userInput.value = query;
-        sendMessage();
-    }
-});
-
-// --- Skill Modal Logic ---
-function openModal(skillId) {
-    const skill = skillsData.find(s => s.id === skillId);
-    if (!skill) return;
-
-    skillModalTitle.textContent = skill.name;
-    skillModalDescription.innerHTML = skill.description; // Use innerHTML to allow for <strong>, etc.
     
-    skillModal.classList.remove('hidden');
-}
-
-function closeModal() {
-    skillModal.classList.add('hidden');
-}
-
-// Modal Event Listeners
-skillModalCloseBtn.addEventListener('click', closeModal);
-skillModalOverlay.addEventListener('click', closeModal);
-
-// Stop clicks inside the panel from closing the modal
-skillModalPanel.addEventListener('click', (e) => e.stopPropagation()); 
-
-// Keyboard (Escape key)
-window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !skillModal.classList.contains('hidden')) {
-        closeModal();
+    if (typewriterElement) {
+        typeWriter();
     }
-});
-
-// Main skill container click listener (Event Delegation)
-document.getElementById('skills-container').addEventListener('click', (e) => {
-    const skillButton = e.target.closest('[data-skill-id]');
-    if (skillButton) {
-        openModal(skillButton.dataset.skillId);
-    }
-});
 
 
-function appendMessage(text, sender) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${sender}`;
-    
-    if (sender === 'ai') {
-        // Basic markdown support for AI (bold and newlines)
-        let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        formattedText = formattedText.replace(/\n/g, '<br>');
-        messageDiv.innerHTML = formattedText;
-    } else {
-        messageDiv.textContent = text;
-    }
-    
-    chatLog.appendChild(messageDiv);
-    scrollChatToBottom();
-
-    if (sender === 'user') {
-        chatHistory.push({ role: "user", parts: [{ text: text }] });
-    } else {
-        chatHistory.push({ role: "model", parts: [{ text: text }] });
-    }
-}
-
-function showLoading() {
-    if (isAILoading) return;
-    isAILoading = true;
-    sendButton.disabled = true;
-    userInput.disabled = true;
-    
-    const loadingDiv = document.createElement('div');
-    loadingDiv.id = 'loading-indicator';
-    loadingDiv.className = 'message ai flex items-center space-x-1.5';
-    loadingDiv.innerHTML = `
-        <span class="loading-dot w-2 h-2 bg-gray-500 rounded-full"></span>
-        <span class="loading-dot w-2 h-2 bg-gray-500 rounded-full"></span>
-        <span class="loading-dot w-2 h-2 bg-gray-500 rounded-full"></span>
-    `;
-    chatLog.appendChild(loadingDiv);
-    scrollChatToBottom();
-}
-
-function hideLoading() {
-    isAILoading = false;
-    sendButton.disabled = false;
-    userInput.disabled = false;
-    const loadingDiv = document.getElementById('loading-indicator');
-    if (loadingDiv) {
-        loadingDiv.remove();
-    }
-    userInput.focus();
-}
-
-async function fetchAIResponse(userQuery) {
-    const payload = {
-        contents: [
-            ...chatHistory, // Send the whole history
-            { role: "user", parts: [{ text: userQuery }] }
-        ],
-        systemInstruction: { parts: [{ text: API_CONFIG.systemPrompt }] }
+    // ===================================================
+    // 2. SKILL MODAL LOGIC
+    // ===================================================
+    const skillData = {
+        "JavaScript": {
+            title: "JavaScript (ES6+)",
+            description: "My proficiency in modern JavaScript is built on formal training, including successful completion of the Cisco Networking Academy's JavaScript Essentials I and II. This foundation covers core concepts, data structures, DOM manipulation, and modern ES6+ syntax, allowing me to build all interactive and dynamic features on this site."
+        },
+        "Python": {
+            title: "Python",
+            description: "My favorite and most versatile language, leveraged for robust data engineering and automation. My expertise is built on comprehensive training from Cisco Networking Academy Python Essentials I & II, and the highly-regarded University of Helsinki's Introduction to Programming MOOC (5 ECTS). This strong foundation allows me to use key data science libraries like Pandas, NumPy, and Scikit-learn effectively for coursework involving training models and setting up complex ETL data pipelines."
+        },
+        "HTML_CSS": {
+            title: "HTML5 & CSS3 (Vanilla)",
+            description: "I have a solid handle on the basics—HTML and CSS are the essential building blocks for any website, and I know my way around them well. I'm always aiming to improve my layouts and keep the code clean. This portfolio site is a current example of me sharpening those skills with vanilla CSS."
+        },
+        "Databases": {
+            title: "Databases",
+            description: "I have a strong foundational exposure to both relational and non-relational database architectures, having worked with PostgreSQL and MongoDB during my coursework. I understand the principles of data modeling and basic query writing. Databases are currently an area of focused study for me, and I am actively working to expand my practical application skills beyond the classroom environment."
+        },
+        "Git": {
+            title: "Git Version Control",
+            description: "I use Git frequently as part of my development workflow. I'm fully proficient in all the necessary core commands for managing branches, ensuring clean commits, resolving basic merge conflicts, and moving code between local and remote repositories like GitHub. It’s the reliable tool that keeps all my project work organized."
+        },
+        "5_Languages": {
+            title: "Fluent in 5 Languages",
+            description: "Communication is one of my strongest assets. I am fluent in five languages: Swedish, Finnish, and English, plus Finnish Sign Language and Swedish Sign Language. My unique upbringing across two countries and communicating daily with my deaf parents ensures I can connect and integrate quickly into any diverse or international team. And hey, if you ever somehow need those two specific sign languages on the job, you know who to call."
+        },
+        "Pandas_NumPy": {
+            title: "Pandas & NumPy",
+            description: "Core tools in my data toolkit. Proficient in using Pandas for data manipulation and analysis, and NumPy for numerical computations."
+        },
+        "Linux": {
+            title: "Linux (Personalized Development Enviroment)",
+            description: "Linux is my daily driver and my main development environment. I enjoy the level of control it offers, having successfully set up and configured my own Arch Linux desktop exactly to my needs. This familiarity with the command line and core system configurations (including the Bash terminal) ensures I'm always comfortable managing and troubleshooting my own stack."
+        },
+        "Vim": {
+            title: "Vim/Neovim (Optimized Terminal Workflow)",
+            description: "I am highly proficient in terminal-based editing. I use Neovim as my main code editor, configured with a modern setup (like LazyVim). While customizing the environment is a bit of a hobby for me, the result is an incredibly efficient, keyboard-driven workflow that integrates nicely with my Linux setup and terminal operations."
+        },
+        "AI & LLM Integration": {
+            title: "AI & LLM Integration",
+            description: "I have a strong interest in leveraging the latest advancements in AI, and I consistently follow LLM development. My experience includes practical integration, such as building a dedicated terminal application powered by a lightweight, local model. I understand how to utilize and integrate AI technologies into projects to enhance functionality and efficiency."
+        }
     };
 
-    // Remove the *last* user message from history (it's in the payload)
-    // The API will add it back with the model's response.
-    // We just added it to chatHistory in appendMessage, so pop it.
-    chatHistory.pop(); 
+    const modal = document.getElementById('skill-modal');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalClose = document.getElementById('modal-close');
+    const skillItems = document.querySelectorAll('.skill-item');
 
-    const headers = { 'Content-Type': 'application/json' };
-    const maxRetries = 3;
-    let retryCount = 0;
-
-    while (retryCount < maxRetries) {
-        try {
-            const response = await fetch(`${API_CONFIG.apiUrl}?key=${API_CONFIG.apiKey}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(payload)
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                if (result.candidates && result.candidates[0].finishReason === 'SAFETY') {
-                      return "Response blocked due to safety settings.";
-                }
-                const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (aiText) {
-                    return aiText;
-                } else {
-                    return "Error: AI returned no text.";
-                }
-            } else if (response.status === 429) {
-                const delay = Math.pow(2, retryCount) * 1000 + Math.random() * 1000;
-                retryCount++;
-                await new Promise(resolve => setTimeout(resolve, delay));
-            } else {
-                const errorResult = await response.json();
-                console.error("API Error:", errorResult);
-                return `Error: API request failed with status ${response.status}. ${errorResult.error?.message || ''}`;
+    // Attach click listeners to all skill tags
+    skillItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const skillKey = item.getAttribute('data-skill');
+            const data = skillData[skillKey];
+            if (data) {
+                modalTitle.textContent = data.title;
+                modalDescription.textContent = data.description;
+                modal.classList.add('active'); // Show modal
             }
-        } catch (error) {
-            console.error("Fetch attempt failed:", error);
-            return `Error: Network failure or irreversible API error: ${error.message}.`;
+        });
+    });
+
+    // Function to close the modal
+    function closeModal() {
+        modal.classList.remove('active');
+    }
+
+    if(modalClose) modalClose.addEventListener('click', closeModal);
+    if(modalOverlay) modalOverlay.addEventListener('click', (e) => {
+        // Close if clicking on the dark background overlay
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+
+    // ===================================================
+    // 3. CHATBOT LOGIC (Uses placeholder for API call)
+    // ===================================================
+    const chatFab = document.getElementById('chat-fab');
+    const chatWindow = document.getElementById('chat-window');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    
+    let chatHistory = []; 
+
+    // Toggle chat window visibility
+    if(chatFab) chatFab.addEventListener('click', () => {
+        chatWindow.classList.toggle('active');
+    });
+
+    // Send message on click or Enter key
+    if(chatSend) chatSend.addEventListener('click', sendMessage);
+    if(chatInput) chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+
+        addMessageToUI(userMessage, 'user');
+        chatInput.value = '';
+
+        // Add to history (for potential real API use later)
+        chatHistory.push({ role: "user", text: userMessage });
+
+        addTypingIndicator();
+        callPlaceholderAPI(userMessage); // Call placeholder function
+    }
+
+    // Adds a message bubble to the chat window
+    function addMessageToUI(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add(sender === 'user' ? 'message-bubble-user' : 'message-bubble-bot');
+        
+        messageElement.innerHTML = `<div><p>${message}</p></div>`;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
+    }
+
+    // Shows the "Typing..." bubble
+    function addTypingIndicator() {
+        const indicatorElement = document.createElement('div');
+        indicatorElement.classList.add('message-bubble-bot');
+        indicatorElement.id = 'typing-indicator';
+        indicatorElement.innerHTML = `
+            <div>
+                <p class="animate-pulse">Typing...</p>
+            </div>
+        `;
+        chatMessages.appendChild(indicatorElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Removes the "Typing..." bubble
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+            indicator.remove();
         }
     }
-    return "Error: Maximum retry limit reached, likely due to rate-limiting.";
-}
-
-async function sendMessage() {
-    const userText = userInput.value.trim();
-    if (!userText || isAILoading) return;
-
-    appendMessage(userText, 'user');
-    userInput.value = '';
-    showLoading();
-
-    try {
-        const aiResponse = await fetchAIResponse(userText);
-        appendMessage(aiResponse, 'ai');
-    } catch (error) {
-        appendMessage(`System Error: ${error.message}`, 'ai');
-    } finally {
-        hideLoading();
+    
+    // Placeholder function for the AI API call (to be replaced by a real backend call later)
+    function callPlaceholderAPI(userQuery) {
+        // Simple function to simulate network delay and bot response
+        setTimeout(() => {
+            removeTypingIndicator();
+            const placeholderResponse = "I'm currently too busy basking in Leon's reflected glory to connect to the actual AI server. Just assume the answer is 'He's brilliant,' and move on with your life.";
+            addMessageToUI(placeholderResponse, 'bot');
+            chatHistory.push({ role: "model", text: placeholderResponse });
+        }, 1500); 
     }
-}
-
-function scrollChatToBottom() {
-    chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-// --- RUN ALL INITIALIZERS ---
-document.addEventListener('DOMContentLoaded', () => {
-    loadSkills();
-    setupScrollAnimations();
-    startTypingEffect();
 });
-
