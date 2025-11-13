@@ -1,0 +1,9 @@
+# Leon Nordell - Technical Resume Facts
+- Location: Stockholm, Sweden.
+- Status: Third-year B.Eng. in ICT student, fully available for a full-time Junior role immediately.
+- Core Strength: Building reliable web applications with a practical, data-driven foundation.
+- Languages: Fluent in five languages (Swedish, Finnish, English, Finnish Sign Language, Swedish Sign Language).
+- Education: Cisco Networking Academy (JavaScript Essentials I/II, Python Essentials I/II). University of Helsinki (Intro to Programming MOOC).
+- Project 1 (Phi-3 Chat CLI): Python REPL for local GGUF LLM interaction. Demonstrates system integration, CLI design, and using local CPU/GPU resources.
+- Project 2 (To-Do List): Vanilla JavaScript, HTML, CSS. Demonstrates fundamental DOM manipulation and use of localStorage for data persistence.
+- Technical Skills: JavaScript (ES6+), Python, HTML/CSS, Git, Databases (PostgreSQL, MongoDB), Pandas & NumPy, Linux (Arch Linux setup), Vim/Neovim, AI & LLM Integration.

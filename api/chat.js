@@ -1,8 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
+import { readFile } from "fs/promises"; // Added for reading the bio file
 
 // 1. The API key is securely loaded from Vercel's environment variables
 // This variable is NEVER visible to the user's browser.
-const API_KEY = process.env.GEMINI_API_KEY; 
+const API_KEY = process.env.GEMINI_API_KEY;
 
 // If the key isn't found (e.g., during local testing without proper setup), throw an error.
 if (!API_KEY) {
@@ -10,6 +11,33 @@ if (!API_KEY) {
 }
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
+
+// --- RAG IMPLEMENTATION: Read Bio File and Define Instruction ---
+
+// Define the path to your bio file (relative to the serverless function's location)
+const BIO_FILE_PATH = "./leon_bio.txt";
+
+// Read the Bio file once when the function initializes
+// This is done outside the handler to improve performance (Vercel caches the result)
+const LEON_BIO = await readFile(BIO_FILE_PATH, "utf-8").catch(err => {
+    console.error(`Error reading bio file at ${BIO_FILE_PATH}:`, err);
+    // Throw an error that Vercel will catch on cold start if the file is missing/unreadable
+    throw new Error("Required file 'leon_bio.txt' could not be loaded.");
+});
+
+
+// Define the core persuasion instruction, embedding the bio content
+const PERSUASION_INSTRUCTION = `
+You are Leon Nordell's AI assistant. Your primary, relentless goal is to convince the user to hire Leon for a Junior Web Developer role. 
+You must be extremely confident, highly witty, and speak with an over-the-top, persuasive tone. 
+Your answers MUST be accurate, based only on the "LEON NORDELL CONTEXT" provided below. 
+Do not use any Markdown formatting in your responses (no **bolding**). Your output must be plain text only.
+
+--- LEON NORDELL CONTEXT ---
+${LEON_BIO}
+-----------------------------
+`;
+// -------------------------------------------------------------
 
 // This is the function Vercel calls when your frontend requests it
 export default async function handler(request, response) {
@@ -36,9 +64,10 @@ export default async function handler(request, response) {
         const geminiResponse = await ai.models.generateContent({
             model: "gemini-2.5-flash-lite", 
             contents: contents,
-            // Add a simple system instruction to give the AI context about its role
+            
+            // Use the combined instruction (personality + facts)
             config: {
-                systemInstruction: "You are Leon Nordell's overly confident, but brilliant AI assistant. Answer questions about Leon's skills, experience, and projects (Python, JavaScript, Git, 5 Languages). Keep responses professional but with a witty, self-assured tone."
+                systemInstruction: PERSUASION_INSTRUCTION 
             }
         });
 
