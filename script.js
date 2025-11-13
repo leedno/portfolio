@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatHistory.push({ role: "user", text: userMessage });
 
         addTypingIndicator();
-        callPlaceholderAPI(userMessage); // Call placeholder function
+        sendChatQuery(userMessage); // Call placeholder function
     }
 
     // Adds a message bubble to the chat window
@@ -202,15 +202,42 @@ document.addEventListener('DOMContentLoaded', () => {
             indicator.remove();
         }
     }
+
+async function sendChatQuery(userQuery) {
+    // ⚠️ The Vercel Serverless Function is automatically available at /api/chat
+    const BACKEND_URL = "/api/chat"; 
     
-    // Placeholder function for the AI API call (to be replaced by a real backend call later)
-    function callPlaceholderAPI(userQuery) {
-        // Simple function to simulate network delay and bot response
-        setTimeout(() => {
-            removeTypingIndicator();
-            const placeholderResponse = "I'm currently too busy basking in Leon's reflected glory to connect to the actual AI server. Just assume the answer is 'He's brilliant,' and move on with your life.";
-            addMessageToUI(placeholderResponse, 'bot');
-            chatHistory.push({ role: "model", text: placeholderResponse });
-        }, 1500); 
+    // We send the entire chat history to maintain conversation context (multi-turn chat)
+    const payload = {
+        message: userQuery,
+        history: chatHistory // Contains { role: "user"|"model", text: "..." }
+    };
+    
+    try {
+        const response = await fetch(BACKEND_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        // ... rest of the try/catch block remains the same ...
+        // (Ensure you remove the old placeholder response text!)
+        if (!response.ok) {
+            throw new Error(`AI Backend Error: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const botResponseText = data.text; // Assuming your backend returns a JSON object like: { "text": "AI response here" }
+
+        removeTypingIndicator();
+        addMessageToUI(botResponseText, 'bot');
+        chatHistory.push({ role: "model", text: botResponseText });
+        
+    } catch (error) {
+        console.error("Gemini API call failed:", error);
+        removeTypingIndicator();
+        addMessageToUI("Oops, Leon's AI proxy seems to be having a temporary issue. Try again later.", 'bot');
     }
-});
+}
