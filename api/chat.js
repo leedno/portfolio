@@ -1,8 +1,15 @@
 import { GoogleGenAI } from "@google/genai";
-import { readFile } from "fs/promises"; // Added for reading the bio file
+import { readFile } from "fs/promises";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// --- ABSOLUTE PATHING FIX (for Vercel ESM environment) ---
+// Get the absolute path to the directory where this script (chat.js) is located
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+// --------------------------------------------------------
 
 // 1. The API key is securely loaded from Vercel's environment variables
-// This variable is NEVER visible to the user's browser.
 const API_KEY = process.env.GEMINI_API_KEY;
 
 // If the key isn't found (e.g., during local testing without proper setup), throw an error.
@@ -14,14 +21,12 @@ const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 // --- RAG IMPLEMENTATION: Read Bio File and Define Instruction ---
 
-// Define the path to your bio file (relative to the serverless function's location)
-const BIO_FILE_PATH = "./portfolio/api/leon_bio.txt";
+// Define the correct absolute path: join the script's directory (__dirname) and the filename.
+const BIO_FILE_PATH = join(__dirname, 'leon_bio.txt'); // FIXED PATHING
 
 // Read the Bio file once when the function initializes
-// This is done outside the handler to improve performance (Vercel caches the result)
 const LEON_BIO = await readFile(BIO_FILE_PATH, "utf-8").catch(err => {
     console.error(`Error reading bio file at ${BIO_FILE_PATH}:`, err);
-    // Throw an error that Vercel will catch on cold start if the file is missing/unreadable
     throw new Error("Required file 'leon_bio.txt' could not be loaded.");
 });
 
