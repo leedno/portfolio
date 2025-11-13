@@ -488,8 +488,8 @@ body {
     bottom: 7rem;
     right: 2rem;
     width: 90%;
-    max-width: 400px;
-    height: 500px;
+    max-width: 500px;
+    height: 600px;
     background: white;
     border-radius: 0.75rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
