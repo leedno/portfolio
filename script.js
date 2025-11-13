@@ -203,41 +203,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-async function sendChatQuery(userQuery) {
-    // ⚠️ The Vercel Serverless Function is automatically available at /api/chat
-    const BACKEND_URL = "/api/chat"; 
-    
-    // We send the entire chat history to maintain conversation context (multi-turn chat)
-    const payload = {
-        message: userQuery,
-        history: chatHistory // Contains { role: "user"|"model", text: "..." }
-    };
-    
-    try {
-        const response = await fetch(BACKEND_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload)
-        });
-
-        // ... rest of the try/catch block remains the same ...
-        // (Ensure you remove the old placeholder response text!)
-        if (!response.ok) {
-            throw new Error(`AI Backend Error: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        const botResponseText = data.text; // Assuming your backend returns a JSON object like: { "text": "AI response here" }
-
-        removeTypingIndicator();
-        addMessageToUI(botResponseText, 'bot');
-        chatHistory.push({ role: "model", text: botResponseText });
+    async function sendChatQuery(userQuery) {
+        // ⚠️ The Vercel Serverless Function is automatically available at /api/chat
+        const BACKEND_URL = "/api/chat"; 
         
-    } catch (error) {
-        console.error("Gemini API call failed:", error);
-        removeTypingIndicator();
-        addMessageToUI("Oops, Leon's AI proxy seems to be having a temporary issue. Try again later.", 'bot');
+        // We send the entire chat history to maintain conversation context (multi-turn chat)
+        const payload = {
+            message: userQuery,
+            history: chatHistory // Contains { role: "user"|"model", text: "..." }
+        };
+        
+        try {
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            });
+
+            // ... rest of the try/catch block remains the same ...
+            // (Ensure you remove the old placeholder response text!)
+            if (!response.ok) {
+                throw new Error(`AI Backend Error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            const botResponseText = data.text; // Assuming your backend returns a JSON object like: { "text": "AI response here" }
+
+            removeTypingIndicator();
+            addMessageToUI(botResponseText, 'bot');
+            chatHistory.push({ role: "model", text: botResponseText });
+            
+        } catch (error) {
+            console.error("Gemini API call failed:", error);
+            removeTypingIndicator();
+            addMessageToUI("Oops, Leon's AI proxy seems to be having a temporary issue. Try again later.", 'bot');
+        }
     }
-}
+};
