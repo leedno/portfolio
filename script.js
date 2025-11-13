@@ -241,4 +241,4 @@ document.addEventListener('DOMContentLoaded', () => {
             addMessageToUI("Oops, Leon's AI proxy seems to be having a temporary issue. Try again later.", 'bot');
         }
     }
-};
+});
