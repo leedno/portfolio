@@ -15,7 +15,7 @@ const ai = new GoogleGenAI({ apiKey: API_KEY });
 // --- RAG IMPLEMENTATION: Read Bio File and Define Instruction ---
 
 // Define the path to your bio file (relative to the serverless function's location)
-const BIO_FILE_PATH = "./api/leon_bio.txt";
+const BIO_FILE_PATH = "./portfolio/api/leon_bio.txt";
 
 // Read the Bio file once when the function initializes
 // This is done outside the handler to improve performance (Vercel caches the result)
