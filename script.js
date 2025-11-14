@@ -59,27 +59,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const skillData = {
         "JavaScript": {
             title: "JavaScript (ES6+)",
-            description: "My proficiency in modern JavaScript is built on formal training, including successful completion of the Cisco Networking Academy's JavaScript Essentials I and II. This foundation covers core concepts, data structures, DOM manipulation, and modern ES6+ syntax, allowing me to build all interactive and dynamic features on this site."
+            description: "I learned most of my knowledge of modern JavaScript from the Cisco Networking Academy's JavaScript Essentials I and II courses. The courses are very comprehensive and gave me a good understanding of how JavaScript works under the hood. I have also applied that JavaScript knowledge to making projects like this website."
         },
         "Python": {
             title: "Python",
-            description: "My favorite and most versatile language, leveraged for robust data engineering and automation. My expertise is built on comprehensive training from Cisco Networking Academy Python Essentials I & II, and the highly-regarded University of Helsinki's Introduction to Programming MOOC (5 ECTS). This strong foundation allows me to use key data science libraries like Pandas, NumPy, and Scikit-learn effectively for coursework involving training models and setting up complex ETL data pipelines."
+            description: "Python is my favorite programming language, and like many people, it was my first entry to the programming world. I have done both the Cisco Python Essentials I and II courses and the Helsinki Introduction to programming MOOC (in python). At Turku AMK where I spent the first two years of my Bachelor's degree, I wrote all the Data Engineering and AI related stuff like ETL processes and model training code in Python. In my opinion it's a great language."
         },
         "HTML_CSS": {
             title: "HTML5 & CSS3 (Vanilla)",
-            description: "I have a solid handle on the basics—HTML and CSS are the essential building blocks for any website, and I know my way around them well. I'm always aiming to improve my layouts and keep the code clean. This portfolio site is a current example of me sharpening those skills with vanilla CSS."
+            description: "I have a solid handle on the basics — HTML and CSS are essential for any web dev to handle, and I know my way around them well. I'm always aiming to improve my layouts and keep the code clean. The biggest thing I have recently learned about HTML and CSS is that MDN Web Docs is your best friend while developing. Turns out reading the docs does help. That piece of information can take any web developer far in their career."
         },
         "Databases": {
             title: "Databases",
-            description: "I have a strong foundational exposure to both relational and non-relational database architectures, having worked with PostgreSQL and MongoDB during my coursework. I understand the principles of data modeling and basic query writing. Databases are currently an area of focused study for me, and I am actively working to expand my practical application skills beyond the classroom environment."
+            description: "I have some experience and foundational exposure to both relational and non-relational database architectures, but I don't consider myself an expert yet. I have worked briefly with PostgreSQL and MongoDB in my coursework but I have no proper projects using these technologies under my belt just yet. Given my current course schedule, projects utilizing databases will surely soon pop up in my github."
         },
         "Git": {
             title: "Git Version Control",
-            description: "I use Git frequently as part of my development workflow. I'm fully proficient in all the necessary core commands for managing branches, ensuring clean commits, resolving basic merge conflicts, and moving code between local and remote repositories like GitHub. It’s the reliable tool that keeps all my project work organized."
+            description: "What is there to say here. Git is something every developer either uses or knows the basics of. I use GitHub and Git actively and manage my version control workflow through the terminal by making sure I know the basic commands."
         },
         "5_Languages": {
             title: "Fluent in 5 Languages",
-            description: "Communication is one of my strongest assets. I am fluent in five languages: Swedish, Finnish, and English, plus Finnish Sign Language and Swedish Sign Language. My unique upbringing across two countries and communicating daily with my deaf parents ensures I can connect and integrate quickly into any diverse or international team. And hey, if you ever somehow need those two specific sign languages on the job, you know who to call."
+            description: "I am fluent in five languages: Swedish, Finnish, and English, plus Finnish Sign Language and Swedish Sign Language. I'm not exactly sure if these specific languages will help me in my professional career, but I might as well advertise it on my resume. If you are wondering how I am fluent in all of them instead of just knowing the languages a little, ask my AI on the website. Or if the AI is losing its mind you can take a sneak peek at the context file I gave to the AI in my github of this project."
         },
         "Pandas_NumPy": {
             title: "Pandas & NumPy",
