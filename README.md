@@ -1,4 +1,4 @@
-# Leon Nordell's Personal Portfolio & Technical Resume
+# Personal Portfolio & Technical Resume - Leon Nordell
 
 ## Overview
 
@@ -10,7 +10,7 @@ The primary goal is to provide recruiters, hiring managers, and collaborators wi
 
 | Component | URL | Note |
 | :--- | :--- | :--- |
-| **Live Portfolio** | https://leon-nordell.vercel.app | Replace with your Vercel URL |
+| **Live Portfolio** | https://leon-nordell.vercel.app | Vercel URL |
 | **Full Resume** | https://leon-nordell.vercel.app/resume.html | Direct link to the single-page resume |
 | **GitHub** | https://github.com/leedno | My GitHub Profile |
 | **LinkedIn** | https://www.linkedin.com/in/leon-nordell/ | My LinkedIn Profile |
