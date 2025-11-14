@@ -1,9 +1,24 @@
-# Leon Nordell - Technical Resume Facts
-- Location: Stockholm, Sweden.
-- Status: Third-year B.Eng. in ICT student, fully available for a full-time Junior role immediately.
-- Core Strength: Building reliable web applications with a practical, data-driven foundation.
-- Languages: Fluent in five languages (Swedish, Finnish, English, Finnish Sign Language, Swedish Sign Language).
-- Education: Cisco Networking Academy (JavaScript Essentials I/II, Python Essentials I/II). University of Helsinki (Intro to Programming MOOC).
-- Project 1 (Phi-3 Chat CLI): Python REPL for local GGUF LLM interaction. Demonstrates system integration, CLI design, and using local CPU/GPU resources.
-- Project 2 (To-Do List): Vanilla JavaScript, HTML, CSS. Demonstrates fundamental DOM manipulation and use of localStorage for data persistence.
-- Technical Skills: JavaScript (ES6+), Python, HTML/CSS, Git, Databases (PostgreSQL, MongoDB), Pandas & NumPy, Linux (Arch Linux setup), Vim/Neovim, AI & LLM Integration.
+# Leon Nordell - AI Context File (Comprehensive)
+
+[CATEGORY: CORE BIOGRAPHY (STATIC FACTS)]
+- Personal Background: I am natively fluent in five languages: Swedish, Finnish, English, Finnish Sign Language, and Swedish Sign Language.
+- Upbringing: I grew up in a deaf household, with both my parents being deaf. My mother is Finnish and my father is Swedish, which is why I use both Finnish and Swedish Sign Language.
+- Relocation: I was born in Stockholm, Sweden, moved to Jyväskylä, Finland at age two, and returned to Stockholm in September 2025.
+- Educational History: I completed my basic education (grades 1-9) in a Swedish-speaking school and graduated from Schildt, a Finnish high school.
+- Career Motivation: I am deeply motivated by complex puzzles, a passion reflected in past interests like speed-solving the Rubik's Cube and playing chess. Programming is now my main focus, as I see software engineering as a highly creative field, a stark contrast to previous jobs requiring only physical labor.
+- Athletic Background: My lifelong competitive experience in sports, including basketball and two years of rugby, has instilled a disciplined work ethic, strong time management, and the perseverance necessary to tackle long-term goals.
+
+[CATEGORY: CURRENT STATUS & GOALS (DYNAMIC FACTS)]
+- Current Status: I am a third-year B.Eng. in ICT student, currently studying remotely at Metropolia University of Applied Sciences. This program is the Finnish equivalent of a Bachelor's degree (AMK).
+- Availability: I am immediately available for full-time Junior Software or Web Developer roles, and I am also actively interested in relevant internships.
+- Educational Trajectory: I initially began my degree focusing on Data Engineering and AI at Turku AMK but transferred to Metropolia's remote program to facilitate my move back to Stockholm. This transfer led to a pivot to web development, as the Data Engineering field did not feel like the right long-term fit.
+- Graduation Timeline: My expected graduation is Spring 2027, but I can potentially graduate earlier due to the program's flexible, self-paced course completion structure.
+- Immediate Goals: My primary goal is to push my skills to become an expert Web Developer. I am building high-level personal projects alongside coursework to gain hands-on development experience.
+- Technical Strength - OS/Editor: I use Linux (Arch/Mint) as my main development environment, leveraging the efficiency and speed gained from a highly customized, keyboard-driven workflow with Neovim. This practice has also given me a deeper understanding of computer systems.
+- Technical Skills - Web Core: I have a solid handle on HTML5, CSS3, and modern JavaScript (ES6+), specializing in DOM manipulation and building dynamic features.
+- Technical Skills - Python/Data: My Python expertise extends to using data science libraries like Pandas and NumPy, which I apply to data engineering and analysis tasks stemming from my coursework.
+- Technical Skills - Databases: Databases (including PostgreSQL and MongoDB) are a current, focused area of study to increase my confidence and practical application skills.
+- Technical Skills - Version Control: I use Git and GitHub daily for version control, focusing on mastering the core commands required for a clean and effective development workflow.
+- Project: Phi-3 Chat CLI: This is a lightweight Python REPL for interacting with a local GGUF-format LLM (Phi-3), showcasing system integration, efficient CPU/GPU resource management, and command-line application design.
+- Project: Vanilla JS To-Do List App: A foundational project built using pure JavaScript, HTML, and CSS, demonstrating core front-end skills like fundamental DOM manipulation and data persistence using localStorage.
+- Professional Experience: I developed a website for C.O. Malm -Keskus using WordPress and the Zoner platform, which emphasized web design and the essential soft skill of clear communication with non-technical clients.
