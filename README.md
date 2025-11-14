@@ -1,6 +1,5 @@
 # Personal Portfolio & Technical Resume - Leon Nordell
 
-## Overview
 
 This repository hosts the source code for my personal portfolio website and technical resume. The project is designed not only as a static showcase of my work but also as an interactive demonstration of my development capabilities, including a custom, Gemini-powered AI assistant.
 
