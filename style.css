@@ -347,6 +347,51 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* hover:shadow-md */
 }
 
+/*
+==================================================
+  8. RESUME CTA SECTION
+==================================================
+*/
+.cta-resume {
+    background-color: #f3f4ff; /* Very light blue background */
+    border: 1px solid #bfdbfe; /* Light blue border (blue-200) */
+    padding: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.cta-heading {
+    font-size: 1.5rem; /* text-3xl */
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.cta-text {
+    font-size: 1.125rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #0ea5e9; /* Blue accent color */
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: #0284c7; /* Darker blue on hover */
+    transform: translateY(-1px);
+}
 
 /*
 ==================================================
