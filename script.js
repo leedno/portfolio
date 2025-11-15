@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const skillData = {
         "JavaScript": {
             title: "JavaScript (ES6+)",
-            description: "I learned most of my knowledge of modern JavaScript from the Cisco Networking Academy's JavaScript Essentials I and II courses. The courses are very comprehensive and gave me a good understanding of how JavaScript works under the hood. I have also applied that JavaScript knowledge to making projects like this website."
+            description: "I learned most of my knowledge of modern JavaScript from the <b>Cisco Networking Academy's JavaScript Essentials I and II</b> courses. The courses are very comprehensive and gave me a good understanding of how JavaScript works under the hood. I have also applied that JavaScript knowledge to making projects like this website."
         },
         "Python": {
             title: "Python",
-            description: "Python is my favorite programming language, and like many people, it was my first entry to the programming world. I have done both the Cisco Python Essentials I and II courses and the Helsinki Introduction to programming MOOC (in python). At Turku AMK where I spent the first two years of my Bachelor's degree, I wrote all the Data Engineering and AI related stuff like ETL processes and model training code in Python. In my opinion it's a great language."
+            description: "Python is my favorite programming language, and like many people, it was my first entry to the programming world. I have done both the <b>Cisco Python Essentials I and II</b> courses and the <b>Helsinki Introduction to programming MOOC</b> (in python). At Turku AMK where I spent the first two years of my Bachelor's degree, I wrote all the Data Engineering and AI related stuff like ETL processes and model training code in Python. In my opinion it's a great language."
         },
         "HTML_CSS": {
             title: "HTML5 & CSS3 (Vanilla)",
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = skillData[skillKey];
             if (data) {
                 modalTitle.textContent = data.title;
-                modalDescription.textContent = data.description;
+                modalDescription.innerHTML = data.description;
                 modal.classList.add('active'); // Show modal
             }
         });
