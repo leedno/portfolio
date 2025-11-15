@@ -75,27 +75,27 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "Git": {
             title: "Git Version Control",
-            description: "What is there to say here. Git is something every developer either uses or knows the basics of. I use GitHub and Git actively and manage my version control workflow through the terminal by making sure I know the basic commands."
+            description: "Git is something every developer either uses or knows the basics of. I use Git and GitHub actively and manage my version control workflow through the terminal. I learn new git commands when necessary and otherwise focus on the code."
         },
         "5_Languages": {
             title: "Fluent in 5 Languages",
-            description: "I am fluent in five languages: Swedish, Finnish, and English, plus Finnish Sign Language and Swedish Sign Language. I'm not exactly sure if these specific languages will help me in my professional career, but I might as well advertise it on my resume. If you are wondering how I am fluent in all of them instead of just knowing the languages a little, ask my AI on the website. Or if the AI is losing its mind you can take a sneak peek at the context file I gave to the AI in my github of this project."
+            description: "I am fluent in five languages: Swedish, Finnish, and English, plus Finnish Sign Language and Swedish Sign Language. I'm not exactly sure if these specific languages will help me in my professional career, but I might as well advertise it on my website. If you are wondering how I am fluent in all of them instead of just knowing the languages a little, ask my AI on the website. Or if the AI is losing its mind you can take a sneak peek at the context file I gave to the AI in my github of this project."
         },
         "Pandas_NumPy": {
             title: "Pandas & NumPy",
-            description: "Core tools in my data toolkit. Proficient in using Pandas for data manipulation and analysis, and NumPy for numerical computations."
+            description: "I use Pandas for efficient data manipulation and cleaning, and NumPy for all kind of complex numerical computations. They were important to my previous Data Engineering and AI coursework, and a bit less important in web development but still useful to know."
         },
         "Linux": {
             title: "Linux (Personalized Development Enviroment)",
-            description: "Linux is my daily driver and my main development environment. I enjoy the level of control it offers, having successfully set up and configured my own Arch Linux desktop exactly to my needs. This familiarity with the command line and core system configurations (including the Bash terminal) ensures I'm always comfortable managing and troubleshooting my own stack."
+            description: "Linux is my daily driver and main development environment. I like the level of control it offers and I even run a customized Arch Linux setup exactly how I need it. It has made me comfortable with the command line and customizing system configuration, which has made me learn more about how computers actually work."
         },
         "Vim": {
-            title: "Vim/Neovim (Optimized Terminal Workflow)",
-            description: "I am highly proficient in terminal-based editing. I use Neovim as my main code editor, configured with a modern setup (like LazyVim). While customizing the environment is a bit of a hobby for me, the result is an incredibly efficient, keyboard-driven workflow that integrates nicely with my Linux setup and terminal operations."
+            title: "Vim/Neovim (Terminal Workflow)",
+            description: "I use Neovim as my code editor. At the end of the day it does not matter what code editors people use, but for me moving my workflow to the terminal has made it fun for me to code and allowed me to keep my hands on the keyboard, where they belong. It has made me code more and therefore over the long term be a better programmer."
         },
         "AI & LLM Integration": {
             title: "AI & LLM Integration",
-            description: "I have a strong interest in leveraging the latest advancements in AI, and I consistently follow LLM development. My experience includes practical integration, such as building a dedicated terminal application powered by a lightweight, local model. I understand how to utilize and integrate AI technologies into projects to enhance functionality and efficiency."
+            description: "I'm genuinely interested in the latest AI advancements and actively follow LLM development. I focus on practical integration like the dedicated terminal application I built using a lightweight, local model. This website also uses AI, but instead of a local model I am using an API. LLMs can also help with the code development workflow, but with great power comes great responsibility. Making sure that you understand the code the LLMs generate, it can be an extremely useful tool."
         }
     };
 
