@@ -2,7 +2,7 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f3f4f6;
-    font-size: 15px; /* Base font slightly reduced for space */
+    font-size: 15px;
 }
 .resume-container {
     max-width: 850px;
@@ -10,41 +10,33 @@ body {
     margin-right: auto;
     min-height: 100vh;
 }
-/* Custom colors matching your portfolio's blue accent */
-.text-accent { color: #0ea5e9; } /* sky-500 */
+.text-accent { color: #0ea5e9; }
 .border-accent { border-color: #0ea5e9; }
 
-/* >>> SPACING OPTIMIZATIONS FOR PRINTING <<< */
-/* Reduce overall section margin for tighter fit */
 main.space-y-8 > section {
-    margin-bottom: 1.5rem; /* Reduced from 2rem */
+    margin-bottom: 1.5rem;
 }
 
-/* Reduce spacing within job/education entries */
 .job-entry {
-    margin-bottom: 1rem; /* Reduced vertical space between jobs */
+    margin-bottom: 1rem;
 }
 
-/* Tighter list styling for all bullet points */
 .list-disc.pl-5 {
     padding-left: 1.25rem;
 }
 .list-disc.pl-5 > li {
     margin-bottom: 0.1rem;
-    line-height: 1.35; /* Tighter line height */
+    line-height: 1.35;
 }
 
-/* Tighter margin below section headings */
 .section-title {
     margin-bottom: 0.75rem;
 }
 
-/* >>> A4 PRINT OPTIMIZATION <<< */
 @media print {
     @page {
         size: A4;
-        /* Maximize space with smaller margins */
-        margin: 0.5in; /* 1.27cm on all sides */
+        margin: 0.5in;
     }
 
     body {
@@ -60,12 +52,10 @@ main.space-y-8 > section {
         min-height: 100vh !important;
     }
     
-    /* Ensure all colors print correctly */
     .bg-gray-800 { background-color: #1f2937 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .text-white { color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .section-title { color: #1f2937 !important; }
     
-    /* Hide URL, Date, Page Numbers (usually added by browser) */
     @page :first {
         margin-top: 0.5in;
     }
@@ -76,26 +66,27 @@ main.space-y-8 > section {
         align-items: flex-start !important;
         width: 100% !important;
     }
-    /* HIDE BUTTONS ON PRINT (NEW) */
     #lang-buttons-container {
+        display: none !important;
+    }
+    #print-safe-instruction {
         display: none !important;
     }
 }
 
-/* Notification container fixes position and provides slight styling */
 #notification-container {
     position: fixed;
     top: 20px;
     left: 0;
     width: 100%;
-    pointer-events: none; /* Allows clicks to pass through */
+    pointer-events: none;
     z-index: 10000;
     display: flex;
     justify-content: center;
 }
 
 #language-notification {
-    background-color: #0ea5e9; /* Blue accent */
+    background-color: #0ea5e9;
     color: white;
     padding: 12px 20px;
     border-radius: 8px;
@@ -103,7 +94,6 @@ main.space-y-8 > section {
     font-weight: 600;
     opacity: 0;
     visibility: hidden;
-    /* Transition for smooth fade/slide in/out effect */
     transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
     transform: translateY(-20px);
 }
@@ -118,9 +108,9 @@ main.space-y-8 > section {
     text-align: center;
     padding: 1rem;
     margin-top: 1.5rem;
-    color: #4b5563; /* gray-600 */
+    color: #4b5563;
     font-size: 0.9rem;
-    border: 1px solid #e5e7eb; /* gray-200 */
+    border: 1px solid #e5e7eb;
     border-radius: 0.25rem;
     max-width: 800px;
     margin-left: auto;
@@ -128,25 +118,41 @@ main.space-y-8 > section {
 }
 
 .instruction-box strong {
-    color: #0ea5e9; /* Blue accent */
+    color: #0ea5e9;
     font-weight: 700;
 }
 
-/* Ensure this instruction box is hidden when the user initiates printing */
-@media print {
+/* --- Mobile Layout Fixes (Screens less than 640px) --- */
+@media (max-width: 639px) {
+    /* square corners on mobile */
+    .resume-container {
+        border-radius: 0 !important;
+    }
+    .resume-container header {
+        border-radius: 0 !important;
+    }
+    
+    /* Fixes date overflow */
+    .job-entry > div.flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* adjust spacing for date element after stacking */
+    .job-entry > div.flex > p.flex-shrink-0 {
+        margin-left: 0 !important;
+        margin-top: 0.25rem;
+    }
+    
+    /* hides keyboard shortcut box on mobile */
     #print-safe-instruction {
         display: none !important;
     }
 }
 
-/* Ensures the instruction box is hidden on smaller screens */
-#print-safe-instruction {
-    display: none; 
-}
-
-/* Shows the instruction box only on screens 640px and wider (desktop/tablet) */
+/* hides instruction box on small screens */
 @media (min-width: 640px) {
     #print-safe-instruction {
-        display: block; 
+        display: block !important;
     }
 }

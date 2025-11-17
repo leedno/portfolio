@@ -393,6 +393,11 @@ body {
     transform: translateY(-1px);
 }
 
+@media (max-width: 767px) {
+    .cta-resume a.cta-button {
+        margin-top: 0.5rem; /* Adds a small margin above each button for spacing */
+    }
+}
 /*
 ==================================================
   8. FOOTER
