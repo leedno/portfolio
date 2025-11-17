@@ -92,7 +92,7 @@ const resumeContent = {
         headingEducation: "UTBILDNING",
         headingExperience: "ARBETSERFARENHET",
         headingSkills: "TEKNISK KOMPETENS",
-        headingInfo: "YTTERLIGARE INFORMATION",
+        headingInfo: "ÖVRIG INFORMATION",
 
         // EDUCATION
         edu1Title: "Högskoleingenjör i Informations- och Kommunikationsteknik (ICT)",
