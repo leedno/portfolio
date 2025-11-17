@@ -31,6 +31,16 @@ body {
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/* removed margins, border-radius, and shadow on screens up to 639px wide */
+@media (max-width: 639px) {
+    .container {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none; 
+    }
+}
+
 /* Responsive Padding for Desktop */
 @media (min-width: 640px) {
     .container {
