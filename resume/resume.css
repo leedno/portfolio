@@ -138,3 +138,15 @@ main.space-y-8 > section {
         display: none !important;
     }
 }
+
+/* Ensures the instruction box is hidden on smaller screens */
+#print-safe-instruction {
+    display: none; 
+}
+
+/* Shows the instruction box only on screens 640px and wider (desktop/tablet) */
+@media (min-width: 640px) {
+    #print-safe-instruction {
+        display: block; 
+    }
+}
