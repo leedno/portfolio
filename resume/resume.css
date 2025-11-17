@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    font-size: 15px; /* Base font slightly reduced for space */
+}
+.resume-container {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+}
+/* Custom colors matching your portfolio's blue accent */
+.text-accent { color: #0ea5e9; } /* sky-500 */
+.border-accent { border-color: #0ea5e9; }
+
+/* >>> SPACING OPTIMIZATIONS FOR PRINTING <<< */
+/* Reduce overall section margin for tighter fit */
+main.space-y-8 > section {
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
+}
+
+/* Reduce spacing within job/education entries */
+.job-entry {
+    margin-bottom: 1rem; /* Reduced vertical space between jobs */
+}
+
+/* Tighter list styling for all bullet points */
+.list-disc.pl-5 {
+    padding-left: 1.25rem;
+}
+.list-disc.pl-5 > li {
+    margin-bottom: 0.1rem;
+    line-height: 1.35; /* Tighter line height */
+}
+
+/* Tighter margin below section headings */
+.section-title {
+    margin-bottom: 0.75rem;
+}
+
+/* >>> A4 PRINT OPTIMIZATION <<< */
+@media print {
+    @page {
+        size: A4;
+        /* Maximize space with smaller margins */
+        margin: 0.5in; /* 1.27cm on all sides */
+    }
+
+    body {
+        background-color: white !important;
+        padding: 0;
+        margin: 0;
+    }
+    .resume-container {
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+        min-height: 100vh !important;
+    }
+    
+    /* Ensure all colors print correctly */
+    .bg-gray-800 { background-color: #1f2937 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .text-white { color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-title { color: #1f2937 !important; }
+    
+    /* Hide URL, Date, Page Numbers (usually added by browser) */
+    @page :first {
+        margin-top: 0.5in;
+    }
+    .header-print-fix {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+    }
+    /* HIDE BUTTONS ON PRINT (NEW) */
+    #lang-buttons-container {
+        display: none !important;
+    }
+}
+
+/* Notification container fixes position and provides slight styling */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+}
+
+#language-notification {
+    background-color: #0ea5e9; /* Blue accent */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    /* Transition for smooth fade/slide in/out effect */
+    transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+    transform: translateY(-20px);
+}
+
+#language-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.instruction-box {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    color: #4b5563; /* gray-600 */
+    font-size: 0.9rem;
+    border: 1px solid #e5e7eb; /* gray-200 */
+    border-radius: 0.25rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.instruction-box strong {
+    color: #0ea5e9; /* Blue accent */
+    font-weight: 700;
+}
+
+/* Ensure this instruction box is hidden when the user initiates printing */
+@media print {
+    #print-safe-instruction {
+        display: none !important;
+    }
+}
