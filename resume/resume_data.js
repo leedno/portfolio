@@ -27,24 +27,25 @@ const resumeContent = {
     edu2Dates: "08.2020 – 05.2023",
     edu2School: "Schildt Upper Secondary School, Jyväskylä, Finland",
 
-    // EXPERIENCE (Web Developer)
-    exp1Title: "Web Developer (Solo Contractor)",
-    exp1Company: "C.O. Malm -Keskus",
-    exp1Dates: "05.2024 – 01.2025",
-    exp1Bullet1:
-      "Designed, developed, and maintained a responsive public-facing website.",
-    exp1Bullet2:
-      "Managed the complete lifecycle of content and feature updates by collaborating directly with association members to gather and implement new requirements.",
-    exp1Bullet3: "Website link: https://comk.fi/",
-
     // EXPERIENCE (Electronics Production)
-    exp2Title: "Electronics Production",
-    exp2Company: "Teleste",
-    exp2Dates: "02.2025 – 08.2025",
-    exp2Bullet1:
+    exp1Title: "Electronics Production",
+    exp1Company: "Teleste",
+    exp1Dates: "02.2025 – 08.2025",
+    exp1Bullet1:
       "Gained extensive practical experience in production quality control and efficient workflow management within a high-tech environment.",
-    exp2Bullet2:
+    exp1Bullet2:
       "Executed tasks involving soldering, SMT (Surface-Mount Technology) assembly, and material handling, emphasizing precision and attention to detail.",
+    exp1Bullet3: "",
+
+    // EXPERIENCE (Web Developer)
+    exp2Title: "Web Developer (Solo Contractor)",
+    exp2Company: "C.O. Malm -Keskus",
+    exp2Dates: "05.2024 – 01.2025",
+    exp2Bullet1:
+      "Designed, developed, and maintained a responsive public-facing website.",
+    exp2Bullet2:
+      "Managed the complete lifecycle of content and feature updates by collaborating directly with association members to gather and implement new requirements.",
+    exp2Bullet3: "Website link: https://comk.fi/",
 
     // EXPERIENCE (Restaurant Staff)
     exp3Title: "Restaurant Staff (Part-Time)",
@@ -54,6 +55,7 @@ const resumeContent = {
       "Developed advanced customer service and conflict resolution skills in a high-volume, time-sensitive environment.",
     exp3Bullet2:
       "Maintained efficiency and demonstrated strong teamwork by adapting quickly to high-pressure situations and managing diverse tasks.",
+    exp3Bullet3: "",
 
     // SKILLS
     skillLangTitle: "Languages & Core Competencies:",
@@ -81,19 +83,19 @@ const resumeContent = {
       "Actively enrolled and rapidly expanding skills in front-end and back-end development:",
 
     skillUpcoming1: "• React.js Fundamentals",
-    skillUpcoming2: "• NodeJS",
+    skillUpcoming2: "• Node.js",
     skillUpcoming3: "• Angular Basics",
     skillUpcoming4: "• Advanced Django",
-    skillUpcoming5: "• SQL- and Relational Databases",
+    skillUpcoming5: "• SQL and Relational Databases",
     skillUpcoming6: "• Practical MongoDB",
 
     // ADDITIONAL INFO
     infoLangTitle: "Multilingual Fluency",
     infoLangText:
-      "I am uniquely native in four languages: Swedish, Finnish, Swedish sign language and Finnish sign language (parents are deaf, I am hearing). I am also fluent in english.",
+      "I am uniquely native in four languages: Swedish, Finnish, Swedish Sign Language and Finnish Sign Language (parents are deaf, I am hearing). I am also fluent in English.",
     infoSportTitle: "Sports & Athletic Pursuits",
     infoSportText:
-      "I used to be an competetive athlete in basketball. This taught me a highly disciplined work ethic, perseverance, and strong time management skills crucial for balancing technical studies and achieving deadlines.",
+      "I used to be a competitive athlete in basketball. This taught me a highly disciplined work ethic, perseverance, and strong time management skills crucial for balancing technical studies and achieving deadlines.",
   },
   // Swedish Content
   sv: {
@@ -123,23 +125,24 @@ const resumeContent = {
     edu2Dates: "Aug 2020 – Maj 2023",
     edu2School: "Schildt Gymnasium, Jyväskylä, Finland",
 
-    // EXPERIENCE (Web Developer)
-    exp1Title: "Webbutvecklare",
-    exp1Company: "C.O. Malm -Keskus",
-    exp1Dates: "Maj 2024 – Jan 2025",
-    exp1Bullet1: "Design och utveckling av en responsiv, publik webbplats.",
-    exp1Bullet2:
-      "Ansvarade för hela livscykeln för innehålls- och funktionsuppdateringar, i nära samarbete med föreningsmedlemmar för att samla in och implementera krav.",
-    exp1Bullet3: "Webbplats: https://comk.fi/",
-
     // EXPERIENCE (Electronics Production)
-    exp2Title: "Elektronikproduktion",
-    exp2Company: "Teleste",
-    exp2Dates: "Feb 2025 – Aug 2025",
-    exp2Bullet1:
+    exp1Title: "Elektronikproduktion",
+    exp1Company: "Teleste",
+    exp1Dates: "Feb 2025 – Aug 2025",
+    exp1Bullet1:
       "Arbetade med kvalitetskontroll och effektiviserade produktionsflöden i en högteknologisk miljö",
-    exp2Bullet2:
+    exp1Bullet2:
       "Arbetade med lödning, SMT-montering (Surface-Mount Technology) och materialhantering, med fokus på precision och detaljer.",
+    exp1Bullet3: "",
+
+    // EXPERIENCE (Web Developer)
+    exp2Title: "Webbutvecklare",
+    exp2Company: "C.O. Malm -Keskus",
+    exp2Dates: "Maj 2024 – Jan 2025",
+    exp2Bullet1: "Design och utveckling av en responsiv, publik webbplats.",
+    exp2Bullet2:
+      "Ansvarade för hela livscykeln för innehålls- och funktionsuppdateringar, i nära samarbete med föreningsmedlemmar för att samla in och implementera krav.",
+    exp2Bullet3: "Webbplats: https://comk.fi/",
 
     // EXPERIENCE (Restaurant Staff)
     exp3Title: "Restaurangpersonal (Deltid)",
@@ -149,6 +152,7 @@ const resumeContent = {
       "Utvecklade kunskaper inom kundservice och konflikthantering i en tidspressad miljö med hög kundvolym.",
     exp3Bullet2:
       "Arbetade effektivt i högt tempo och visade stark laganda genom snabb anpassning till varierande arbetsuppgifter.",
+    exp3Bullet3: "",
 
     // SKILLS
     skillLangTitle: "Programmeringsspråk & Tekniska Grunder:",
@@ -176,10 +180,10 @@ const resumeContent = {
       "Dessa kurser kommer jag att studera härnäst för att utveckla mina kompetenser inom front- och backend-utveckling:",
 
     skillUpcoming1: "• React.js Fundamentals",
-    skillUpcoming2: "• NodeJS",
+    skillUpcoming2: "• Node.js",
     skillUpcoming3: "• Angular Basics",
     skillUpcoming4: "• Advanced Django",
-    skillUpcoming5: "• SQL- and Relational Databases",
+    skillUpcoming5: "• SQL and Relational Databases",
     skillUpcoming6: "• Practical MongoDB",
 
     // ADDITIONAL INFO
