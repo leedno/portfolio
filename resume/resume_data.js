@@ -35,7 +35,6 @@ const resumeContent = {
       "Gained extensive practical experience in production quality control and efficient workflow management within a high-tech environment.",
     exp1Bullet2:
       "Executed tasks involving soldering, SMT (Surface-Mount Technology) assembly, and material handling, emphasizing precision and attention to detail.",
-    exp1Bullet3: "",
 
     // EXPERIENCE (Web Developer)
     exp2Title: "Web Developer (Solo Contractor)",
@@ -133,7 +132,6 @@ const resumeContent = {
       "Arbetade med kvalitetskontroll och effektiviserade produktionsflöden i en högteknologisk miljö",
     exp1Bullet2:
       "Arbetade med lödning, SMT-montering (Surface-Mount Technology) och materialhantering, med fokus på precision och detaljer.",
-    exp1Bullet3: "",
 
     // EXPERIENCE (Web Developer)
     exp2Title: "Webbutvecklare",
