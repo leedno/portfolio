@@ -65,28 +65,28 @@ const resumeContent = {
       "Git (GitHub), Unix/Linux (CLI Proficiency), PostgreSQL, MongoDB, ETL Processes (Apache Airflow).",
     skillCourseTitle: "Some of my Completed Coursework",
 
-    skillCourse1: "• JavaScript Essentials, Python Essentials",
-    skillCourse2:
-      "• Data Structures and Algorithms, Software Engineering Principles",
+    skillCourse1:
+      "• Full Stack Web Development (React.js, Node.js, SQL & Relational Databases)",
+    skillCourse2: "• JavaScript Essentials, Python Essentials",
     skillCourse3:
-      "• Data Analytics & Machine Learning, Introduction to Artificial Intelligence",
+      "• Data Structures and Algorithms, Software Engineering Principles",
     skillCourse4:
-      "• Introduction to Data Engineering, Basic Skills for Data Management",
+      "• Data Analytics & Machine Learning, Introduction to Artificial Intelligence",
     skillCourse5:
-      "• Basic Networking and Cybersecurity, Electronics Fundamentals",
+      "• Introduction to Data Engineering, Basic Skills for Data Management",
     skillCourse6:
-      "• Technical Communication & English, Project Workshop Course",
+      "• Basic Networking and Cybersecurity, Technical Communication & English",
 
     skillUpcomingTitle: "Upcoming ICT Coursework",
     skillUpcomingText:
       "Actively enrolled and rapidly expanding skills in front-end and back-end development:",
 
-    skillUpcoming1: "• React.js Fundamentals",
-    skillUpcoming2: "• Node.js",
-    skillUpcoming3: "• Angular Basics",
-    skillUpcoming4: "• Advanced Django",
-    skillUpcoming5: "• SQL and Relational Databases",
-    skillUpcoming6: "• Practical MongoDB",
+    skillUpcoming1: "• Angular Basics",
+    skillUpcoming2: "• Advanced Django",
+    skillUpcoming3: "• Practical MongoDB",
+    skillUpcoming4: "• Google Cloud Computing Fundamentals",
+    skillUpcoming5: "• DevOps Tools with Azure",
+    skillUpcoming6: "• Unix/Linux (Basic and Advanced)",
 
     // ADDITIONAL INFO
     infoLangTitle: "Multilingual Fluency",
@@ -161,28 +161,28 @@ const resumeContent = {
       "Git (GitHub), Unix/Linux (CLI-erfarenhet), PostgreSQL, MongoDB, ETL-processer (Apache Airflow).",
     skillCourseTitle: "Några Av Mina Genomförda Kurser",
 
-    skillCourse1: "• JavaScript Essentials, Python Essentials",
-    skillCourse2:
-      "• Data Structures and Algorithms, Software Engineering Principles",
+    skillCourse1:
+      "• Full Stack Web Development (React.js, Node.js, SQL & Relational Databases)",
+    skillCourse2: "• JavaScript Essentials, Python Essentials",
     skillCourse3:
-      "• Data Analytics & Machine Learning, Introduction to Artificial Intelligence",
+      "• Data Structures and Algorithms, Software Engineering Principles",
     skillCourse4:
-      "• Introduction to Data Engineering, Basic Skills for Data Management",
+      "• Data Analytics & Machine Learning, Introduction to Artificial Intelligence",
     skillCourse5:
-      "• Basic Networking and Cybersecurity, Electronics Fundamentals",
+      "• Introduction to Data Engineering, Basic Skills for Data Management",
     skillCourse6:
-      "• Technical Communication & English, Project Workshop Course",
+      "• Basic Networking and Cybersecurity, Technical Communication & English",
 
     skillUpcomingTitle: "Kommande ICT Kurser",
     skillUpcomingText:
       "Dessa kurser kommer jag att studera härnäst för att utveckla mina kompetenser inom front- och backend-utveckling:",
 
-    skillUpcoming1: "• React.js Fundamentals",
-    skillUpcoming2: "• Node.js",
-    skillUpcoming3: "• Angular Basics",
-    skillUpcoming4: "• Advanced Django",
-    skillUpcoming5: "• SQL and Relational Databases",
-    skillUpcoming6: "• Practical MongoDB",
+    skillUpcoming1: "• Angular Basics",
+    skillUpcoming2: "• Advanced Django",
+    skillUpcoming3: "• Practical MongoDB",
+    skillUpcoming4: "• Google Cloud Computing Fundamentals",
+    skillUpcoming5: "• DevOps Tools with Azure",
+    skillUpcoming6: "• Unix/Linux (Basic and Advanced)",
 
     // ADDITIONAL INFO
     infoLangTitle: "Språkkunskaper",
