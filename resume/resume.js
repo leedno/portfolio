@@ -27,7 +27,7 @@ const elementMap = {
     'exp-1-dates': 'exp1Dates',
     'exp-1-bullet1': 'exp1Bullet1',
     'exp-1-bullet2': 'exp1Bullet2',
-    'exp-1-bullet3': 'exp1Bullet3',
+
     // Job 2 (Electronics Production)
     'exp-2-title': 'exp2Title',
     'exp-2-company': 'exp2Company',
@@ -62,7 +62,7 @@ const elementMap = {
     'skill-upcoming-4': 'skillUpcoming4',
     'skill-upcoming-5': 'skillUpcoming5',
     'skill-upcoming-6': 'skillUpcoming6',
-    
+
     // 5. ADDITIONAL INFO SECTION
     'heading-info': 'headingInfo',
     'info-lang-title': 'infoLangTitle',
@@ -99,10 +99,10 @@ function instantSwitch(content) {
     orderedKeys.forEach((id) => {
         const key = elementMap[id];
         const element = document.getElementById(id);
-        
+
         if (element && content[key] !== undefined) {
             if (id === 'page-title') {
-                 document.title = content[key];
+                document.title = content[key];
             } else {
                 element.innerHTML = content[key];
             }
@@ -115,12 +115,12 @@ function updateContentSequentially(content) {
     orderedKeys.forEach((id, index) => {
         const key = elementMap[id];
         const element = document.getElementById(id);
-        
+
         if (element && content[key] !== undefined) {
             // Use setTimeout to delay each update based on its index
             setTimeout(() => {
                 if (id === 'page-title') {
-                     document.title = content[key];
+                    document.title = content[key];
                 } else {
                     element.innerHTML = content[key];
                 }
@@ -132,15 +132,15 @@ function updateContentSequentially(content) {
 // Global function to switch language (called by URL reader and shortcuts)
 function switchLanguage(lang) {
     const content = resumeContent[lang];
-    if (!content) return; 
+    if (!content) return;
 
     if (!hasPageLoaded) {
         // Run instantly if called during initial DOMContentLoaded
         instantSwitch(content);
     } else {
         // Run sequential animation and notification if triggered later (by shortcut)
-        const message = (lang === 'sv') 
-            ? 'Språk bytt till Svenska (Alt+E)' 
+        const message = (lang === 'sv')
+            ? 'Språk bytt till Svenska (Alt+E)'
             : 'Language switched to English (Alt+S)';
         showNotification(message);
         updateContentSequentially(content);
@@ -159,18 +159,18 @@ function getInitialLanguage() {
 function handleLanguageShortcut(event) {
     if (event.altKey) {
         let newLang = null;
-        
+
         // Alt + S for Swedish
         if (event.key === 's' || event.key === 'S') {
             newLang = 'sv';
-        } 
+        }
         // Alt + E for English
         else if (event.key === 'e' || event.key === 'E') {
             newLang = 'en';
         }
 
         if (newLang) {
-            event.preventDefault(); 
+            event.preventDefault();
             switchLanguage(newLang);
         }
     }
@@ -182,10 +182,10 @@ document.addEventListener('keydown', handleLanguageShortcut);
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initial Content Load (runs instantSwitch inside)
     switchLanguage(getInitialLanguage());
-    
+
     // 2. Set flag AFTER the initial content load is complete
     // We wrap this in a timeout just long enough to ensure all instant rendering is done.
     setTimeout(() => {
         hasPageLoaded = true;
-    }, 100); 
+    }, 100);
 });
